@@ -1,8 +1,11 @@
 
-build: $(wildcard *.go)
+_build: $(wildcard *.go)
 	go build -o gofunc.so -buildmode=c-shared *.go
 
-run: build
+_bundle:
+	bundle
+
+run: _build _bundle
 	./main.rb
 
-.PHONY: build run
+.PHONY: _build _bundle run
